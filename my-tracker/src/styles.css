@@ -1,0 +1,34 @@
+.card-body-scroll{
+    overflow-y: auto;
+}
+.card-body-scroll::-webkit-scrollbar {
+    width: 8px;
+    opacity: 0; /* Hide scrollbar */
+  }
+  
+  .card-body-scroll:hover::-webkit-scrollbar {
+    opacity: 1; /* Show scrollbar on hover */
+  }
+  
+  .card-body-scroll::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+  
+  .card-body-scroll::-webkit-scrollbar-thumb {
+    background: #e6e6e6;
+    border-radius: 10px;
+  }
+  
+  .card-body-scroll::-webkit-scrollbar-thumb:hover {
+    background: #888;
+  }
+
+  .active {
+    font-weight: bold;
+    color: #007bff; /* Change this to your desired active color */
+  }
+
+  a{
+    color: inherit;
+  }
