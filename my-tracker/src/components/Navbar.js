@@ -5,12 +5,11 @@ import {
     MDBIcon,
     MDBNavbarNav,
     MDBNavbarItem,
-    MDBNavbarLink,
     MDBNavbarToggler,
     MDBNavbarBrand,
     MDBCollapse
 } from 'mdb-react-ui-kit';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import '../styles.css';
 

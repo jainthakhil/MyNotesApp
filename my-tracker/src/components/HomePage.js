@@ -7,7 +7,6 @@ import Navbar from './Navbar';
   
 const HomePage = () => {
   const [userName, setUserName] = useState('');
-
   const userHomePage = async()=>{
     try{
         const response = await fetch('/getdata', {

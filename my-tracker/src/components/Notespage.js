@@ -26,21 +26,16 @@ export default function NotesPage() {
           setNotes(data);
         } else {
           console.error('Failed to fetch notes');
-          // Optionally redirect to an error page or show a message
           navigate('/signin');
         }
       } catch (err) {
         console.error('An error occurred while fetching notes:', err);
-        // Optionally redirect to an error page or show a message
         navigate('/signin');
       }
     };
 
     fetchNotes();
-  }, [navigate]);
-
-  //create new note 
-
+  }, [navigate, notes]);
 
   return (
     <>
@@ -54,9 +49,6 @@ export default function NotesPage() {
           </MDBCardBody>
 
         </MDBCard>
-
-
-
         {notes.length === 0 ? (
           <p>No notes available.</p>
         ) : (
@@ -67,7 +59,6 @@ export default function NotesPage() {
                 <div className='d-flex justify-content-between align-items-center mb-3'>
                   <MDBCardTitle className='mb-0' style={{width:"50%"}} >{note.title}</MDBCardTitle>
                   <div>
-                    {/* Action links */}
                     <Link to={`/edit/${note._id}`} className='mx-2'>
                       <MDBIcon fas icon="pencil-alt" size='lg' />
                     </Link>
@@ -76,20 +67,8 @@ export default function NotesPage() {
                     </Link>
                   </div>
                 </div>
-
-
-                {/* <MDBCardTitle>{note.title}</MDBCardTitle> */}
                 <MDBCardText>{note.desc}</MDBCardText>
                 <MDBCardText><small>{note.date}</small></MDBCardText>
-
-                {/* <div class="d-flex justify-content-end">
-                  <Link to={`/edit/${note._id}`} className='mx-2 '><i class="fas fa-trash-can"></i></Link>
-                  <Link to={`/edit/${note._id}`} className='mx-2 '><i class="fas fa-pencil"></i></Link>
-
-                </div> */}
-
-
-
               </MDBCardBody>
             </MDBCard>
           ))

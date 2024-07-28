@@ -29,10 +29,8 @@ const CreateNote = () => {
       const data = await response.json();
 
       if (response.status !== 200 || !data) {
-        window.alert("Adding failed!");
         console.log("Adding error.");
       } else {
-        window.alert("Added successfully!");
         console.log("Added successfully.");
 
         setNotesData({

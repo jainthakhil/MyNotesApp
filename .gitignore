@@ -23,6 +23,7 @@ yarn-error.log*
 
 # Ignore .env file in server directory
 /server/.env
+/server/node_modules
 
 # Ignore node_modules folder in my-tracker (client) directory
 /my-tracker/node_modules

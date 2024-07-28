@@ -49,10 +49,8 @@ function Register() {
         });
         const data = await response.json();
         if(data.status === 422 || !data){
-            window.alert("registration failed!");
             console.log("registration error.");
         } else{
-            window.alert("registration Successfull!");
             console.log("registration Successfull.");
             navigate("/signin");
 
@@ -77,6 +75,7 @@ function Register() {
                                     <MDBInput label='Your Name' id='form1' type='text' name='name' className='w-100' autoComplete='off'
                                         value={userData.name}
                                         onChange={handleInput}
+                                        style={{fontWeight:"300"}}
                                     />
                                 </div>
 
@@ -85,6 +84,7 @@ function Register() {
                                     <MDBInput label='Your Email' id='form2' type='email' name='email' autoComplete='off'
                                         value={userData.email}
                                         onChange={handleInput}
+                                        style={{fontWeight:"300"}}
                                     />
                                 </div>
 
@@ -93,6 +93,7 @@ function Register() {
                                     <MDBInput label='Password' id='form3' type='password' name='password' autoComplete='off'
                                         value={userData.password}
                                         onChange={handleInput}
+                                        style={{fontWeight:"300"}}
                                     />
                                 </div>
 
@@ -101,6 +102,7 @@ function Register() {
                                     <MDBInput label='Confirm password' id='form4' type='password' name='confirmpassword' autoComplete='off'
                                         value={userData.confirmpassword}
                                         onChange={handleInput}
+                                        style={{fontWeight:"300"}}
                                     />
                                 </div>
                                 <MDBBtn type='submit' className='mb-4' size='lg' onClick={handleSubmit}>Register</MDBBtn>

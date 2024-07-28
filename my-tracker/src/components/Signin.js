@@ -50,13 +50,10 @@ function Signin() {
         const data = await response.json();
 
         if(response.status === 404 || !data){
-            window.alert("Login failed!");
-            console.log("login error.");
+            console.log("No user found")
+           
         }
         else{
-            window.alert("Logged in Successfull!");
-            console.log("Logged in Successfull.");
-            // navigate(`/notes/${data.name}`);
             navigate('/');
 
         }
@@ -98,7 +95,7 @@ function Signin() {
                                      />
                                 </div>
 
-                                <p>Don't have an account? <Link to="/register">Sign Up</Link> </p>
+                                <p>Don't have an account? <Link to="/register"><strong style={{color:"blue"}}>Sign Up </strong> </Link> </p>
 
                                 <MDBBtn type='submit' onClick={handleSubmit} className='mb-4' size='lg'>Login</MDBBtn>
 
