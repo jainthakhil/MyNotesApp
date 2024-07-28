@@ -26,6 +26,7 @@ const HomePage = () => {
   useEffect(()=>{
     userHomePage();
   },[]);
+  
   return (
     <>
     <Navbar/>
