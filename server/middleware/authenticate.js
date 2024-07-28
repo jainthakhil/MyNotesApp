@@ -12,7 +12,6 @@ const Authenticate = async (req, res, next) => {
         const verifyToken = jwt.verify(token, process.env.SECRET_KEY);
 
         const rootUser = await User.findOne({_id:verifyToken._id, "tokens.token":token});
-        console.log("rootuser:",rootUser); // new  comment added 
         
         if(!rootUser){throw new Error('User not found')}
         

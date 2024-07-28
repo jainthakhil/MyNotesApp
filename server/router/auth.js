@@ -60,10 +60,9 @@ router.post("/signin", async (req, res)=>{
             
             if(isMatch){
                 token = await userExist.generateAuthToken();
-                console.log("your token is:", token);
-
                 res.cookie("jwtoken", token, {
-                    expires: new Date(Date.now() + 25892000000),
+                    expires: new Date(Date.now() + 86400000),
+                    // expires: new Date(Date.now() + 25892000000),
                     httpOnly: true
                 });
 
@@ -88,7 +87,6 @@ router.post("/signin", async (req, res)=>{
 
 router.get('/getdata', authenticate, (req, res) => {
     res.send(req.rootUser);
-    console.log(req.rootUser);
  });
 
 router.get('/logout', (req,res)=>{
