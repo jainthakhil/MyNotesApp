@@ -15,7 +15,7 @@ export default function NotesPage() {
   useEffect(() => {
     const fetchNotes = async () => {
       try {
-        const response = await fetch(`/notes/${name}`, {
+        const response = await fetch(`${backendUrl}/notes/${name}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json"

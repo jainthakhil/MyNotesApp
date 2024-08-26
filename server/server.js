@@ -4,16 +4,6 @@ const cors = require('cors');
 const app = express();
 require('dotenv').config();
 
-// const corsOptions = {
-//   origin: [
-//                              // Deployed frontend
-//     'http://localhost:3000' // Local frontend
-//   ],
-//   methods: ['GET', 'POST', 'DELETE'], // Allowed methods
-//   credentials: true // Allow credentials like cookies
-// };
-
-// app.use(cors(corsOptions));
 app.use(cors({
   origin:[
     'http://localhost:3000',

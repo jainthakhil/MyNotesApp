@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { MDBInput, MDBBtn } from 'mdb-react-ui-kit';
 
+
 const CreateNote = () => {
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
+  const { name } = useParams();
   const navigate = useNavigate();
   const [notesData, setNotesData] = useState({
     date: "",
@@ -18,7 +21,7 @@ const CreateNote = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`/notes/:name`, {
+      const response = await fetch(`${backendUrl}/notes/${name}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -59,7 +62,7 @@ const CreateNote = () => {
   }
   return (
     <>
-        <form method='POST'>
+        <form>
         <MDBInput 
           id='form4Example1' 
           wrapperClass='mb-3' 

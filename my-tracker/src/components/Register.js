@@ -38,7 +38,7 @@ function Register() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const {name, email, password, confirmpassword} = userData;
-        const response = await fetch('/register',{
+        const response = await fetch(`${backendUrl}/register`,{
             method:"POST",
             headers:{
                 "Content-Type":"application/json"
@@ -69,7 +69,7 @@ function Register() {
                         <MDBCol md='10' lg='6' className='order-2 order-lg-1 d-flex flex-column align-items-center'>
 
                             <h2 className="fw-bold mb-5 text-uppercase">Sign Up</h2>
-                            <form method='POST'>
+                            <form >
                                 <div className="d-flex flex-row align-items-center mb-4 ">
                                     <MDBIcon fas icon="user me-3" size='lg' />
                                     <MDBInput label='Your Name' id='form1' type='text' name='name' className='w-100' autoComplete='off'
