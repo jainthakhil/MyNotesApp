@@ -14,7 +14,10 @@ require('dotenv').config();
 // };
 
 // app.use(cors(corsOptions));
-
+app.use(cors({
+  origin: 'http://localhost:3000', // Frontend origin
+  credentials: true, // Allow credentials (cookies, etc.)
+}));
 const PORT = process.env.PORT || 5000;
 
 require('./db/dbconn');
