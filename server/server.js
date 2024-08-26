@@ -17,7 +17,7 @@ require('dotenv').config();
 app.use(cors({
   origin:[
     'http://localhost:3000',
-    'https://mynotes-app-frontend.vercel.app/signin'
+    'https://mynotes-app-frontend.vercel.app'
 
   ] ,  // Frontend origin
   credentials: true, // Allow credentials (cookies, etc.)
