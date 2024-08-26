@@ -40,6 +40,8 @@ function Signin() {
             setLoggedInData({ email: "", password: "" })
             return;
         }
+        console.log(backendUrl);
+        
         const response = await fetch('/signin',{
             method:"POST",
             credentials: 'include',
@@ -77,7 +79,7 @@ function Signin() {
                         <MDBCol md='10' lg='6' className='order-2 order-lg-1 d-flex flex-column align-items-center'>
 
                             <h2 className="fw-bold mb-5 text-uppercase">Login</h2>
-                            <form method='POST' >
+                            <form  >
                                 <div className="d-flex flex-row align-items-center mb-4">
                                     <MDBIcon fas icon="envelope me-3" size='lg' />
                                     <MDBInput label='Your Email' id='form2' type='email' 
