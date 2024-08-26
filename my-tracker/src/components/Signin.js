@@ -42,7 +42,7 @@ function Signin() {
         }
         console.log(backendUrl);
         
-        const response = await fetch('/signin',{
+        const response = await fetch(`${backendUrl}/signin`,{
             method:"POST",
             credentials: 'include',
             headers:{
