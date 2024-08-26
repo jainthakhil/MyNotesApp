@@ -19,7 +19,8 @@ app.use(cors({
     'http://localhost:3000',
     'https://mynotes-app-frontend.vercel.app'
 
-  ] ,  // Frontend origin
+  ] ,
+  methods: ['GET', 'POST', 'DELETE', 'OPTIONS'],  // Frontend origin
   credentials: true, // Allow credentials (cookies, etc.)
 }));
 const PORT = process.env.PORT || 5000;
