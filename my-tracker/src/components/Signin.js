@@ -12,16 +12,16 @@ import {
     MDBIcon
 }
     from 'mdb-react-ui-kit';
-
 import Navbar from './Navbar';
+import { useUserContext } from '../context/UserName';
 
 function Signin() {
-
+    const backendUrl = process.env.REACT_APP_BACKEND_URL;
+    const userContext = useUserContext();
     const [loggedIndata, setLoggedInData] = useState({
         email:"",
         password:""
     });
-
     let inputValue, inputName;
     const navigate = useNavigate();
     
@@ -29,16 +29,20 @@ function Signin() {
         e.preventDefault();
         inputName = e.target.name;
         inputValue = e.target.value;
-
         setLoggedInData({...loggedIndata, [inputName]:inputValue});
-
     }
-
     const handleSubmit = async (e)=>{
         e.preventDefault();
         const{email, password} = loggedIndata;
-        const response = await fetch("/signin",{
+        if (!email || !password) {
+            console.error("Both fields are required");
+            alert("Please fill in both email and password.");
+            setLoggedInData({ email: "", password: "" })
+            return;
+        }
+        const response = await fetch('/signin',{
             method:"POST",
+            credentials: 'include',
             headers:{
                 "Content-Type":"application/json"
             },
@@ -46,22 +50,22 @@ function Signin() {
                 email, password
             })
         });
-
         const data = await response.json();
-
+        const username = data.name;
         if(response.status === 404 || !data){
-            console.log("No user found")
-           
+            alert("no user found")
+            console.log("No user found")   
+            setLoggedInData({ email: "", password: "" })       
         }
         else{
+            userContext.setUserName(username);
+            console.log(userContext.userName);
+            userContext.setIsLoggedin(true);
+            console.log(userContext.isLoggedin);
             navigate('/');
-
         }
-
     }
-
     return (
-        
         <>
         <Navbar/>
         
@@ -78,7 +82,7 @@ function Signin() {
                                     <MDBIcon fas icon="envelope me-3" size='lg' />
                                     <MDBInput label='Your Email' id='form2' type='email' 
                                      name='email' 
-                                     value={loggedIndata.name}
+                                     value={loggedIndata.email}
                                      onChange={handleChange} 
                                      style={{ fontWeight: 'normal' }}
                                      />

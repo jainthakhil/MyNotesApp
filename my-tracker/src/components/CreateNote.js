@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { MDBInput, MDBBtn } from 'mdb-react-ui-kit';
 
 const CreateNote = () => {
-
   const navigate = useNavigate();
   const [notesData, setNotesData] = useState({
     date: "",
@@ -19,7 +18,7 @@ const CreateNote = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('/notes/:name', {
+      const response = await fetch(`/notes/:name`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -39,8 +38,6 @@ const CreateNote = () => {
             desc: ""
           });
   
-
-
         const notesResponse = await fetch(`/notes/${data.name}`, {
           method: "GET",
           headers: {
@@ -86,7 +83,7 @@ const CreateNote = () => {
         />
         <MDBInput 
           wrapperClass='mb-3' 
-          textarea 
+          type='text' 
           id='form4Example3' 
           rows={6} 
           name="desc" 
@@ -95,7 +92,7 @@ const CreateNote = () => {
           onChange={handleChange} 
           style={{ fontWeight: 'normal' }}
         />
-        <MDBBtn type='submit' className='mb-4' block onClick={handleSubmit}>
+        <MDBBtn type='submit' className='mb-4 bg-[#67C6E3]' block onClick={handleSubmit}>
           Add
         </MDBBtn>
       </form>

@@ -3,7 +3,10 @@ import { useNavigate } from 'react-router-dom'
 
 const Logout = () => {
     const navigate = useNavigate();
+    const backendUrl = process.env.REACT_APP_BACKEND_URL;
+
     useEffect(()=>{
+       
         fetch('/logout',{
             method:"GET",
             headers:{
@@ -20,10 +23,10 @@ const Logout = () => {
         }).catch((err)=>{
             console.log(err);
         })
-    });
+    }, []);
 
   return (
-    <div>Logout</div>
+    <div>Logging out....</div>
   )
 }
 

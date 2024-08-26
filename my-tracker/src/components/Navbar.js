@@ -6,78 +6,85 @@ import {
     MDBNavbarNav,
     MDBNavbarItem,
     MDBNavbarToggler,
-    MDBNavbarBrand,
     MDBCollapse
+
 } from 'mdb-react-ui-kit';
+
 import { NavLink } from 'react-router-dom';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import '../styles.css';
+import { useUserContext } from '../context/UserName';
 
 const Navbar = () => {
-    const [openNavColorThird, setOpenNavColorThird] = useState(false);
-
-    const [userName, setUserName] = useState('');
-
-    const userHomePage = async()=>{
-      try{
-          const response = await fetch('/getdata', {
-              method:"GET",
-              headers:{
-                  "Content-Type":"application/json"
-              },
-          });
-          const data = await response.json();
-          console.log(data);
-          setUserName(data.name);
-      } catch(err){
-          console.log(err);
-      }
+    const userContext = useUserContext();
+    const noteUserName = userContext.userName;
+    const [openNavLeft, setOpenNavLeft] = useState(false);
+    const handleLogoutClick = ()=>{
+        userContext.setIsLoggedin(false);
     }
-    useEffect(()=>{
-      userHomePage();
-    },[]);
-
+    
     return (
         <>
-             <MDBNavbar expand='lg' dark bgColor='primary' light >
+            <MDBNavbar expand='lg'  className='bg-[#67C6E3] fixed w-full z-10'>
                 <MDBContainer fluid>
-                    <MDBNavbarBrand href='#'>UrNote</MDBNavbarBrand>
                     <MDBNavbarToggler
                         type='button'
-                        data-target='#navbarColor02'
-                        aria-controls='navbarColor02'
+                        data-target='#navbarLeftAlignExample'
+                        aria-controls='navbarLeftAlignExample'
                         aria-expanded='false'
                         aria-label='Toggle navigation'
-                        onClick={() => setOpenNavColorThird(!openNavColorThird)}
+                        onClick={() => setOpenNavLeft(!openNavLeft)}
                     >
                         <MDBIcon icon='bars' fas />
                     </MDBNavbarToggler>
-                    <MDBCollapse show={openNavColorThird} navbar>
-                        <MDBNavbarNav className='ms-auto mb-2 mb-lg-0 '>
-                            <MDBNavbarItem className=''>
-                            {/* <MDBNavbarLink tag={Link} to='/' end>Home</MDBNavbarLink> */}
-                            <NavLink to='/' end className= {({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-                                    Home
-                                </NavLink>
-                            </MDBNavbarItem>
-                            <MDBNavbarItem>
-                            {/* <MDBNavbarLink tag={Link} to='/notes/:name'  >My Notes</MDBNavbarLink> */}
-                            <NavLink to={`/notes/${userName}`} className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-                                    My Notes
-                                </NavLink>
-                            </MDBNavbarItem>
-                            <MDBNavbarItem>
-                                {/* <MDBNavbarLink tag={Link} to='/signin'>Login</MDBNavbarLink> */}
-                                <NavLink to='/signin' className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-                                    Login
-                                </NavLink>
-                            </MDBNavbarItem>
-                            <MDBNavbarItem>
-                            {/* <MDBNavbarLink tag={Link} to='/logout' >Logout</MDBNavbarLink> */}
-                            <NavLink to='/logout' className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'} >
-                                        Logout
+
+                    <MDBCollapse navbar open={openNavLeft} className='justify-content-center'>
+                        <MDBNavbarNav className=' mb-2 mb-lg-0'>
+                        {
+                                userContext.isLoggedin?(
+                                <MDBNavbarItem>
+                                    <NavLink to='/' className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
+                                        Home
                                     </NavLink>
-                            </MDBNavbarItem>
+                                </MDBNavbarItem>):(<></>)
+                            }
+                            {
+                                userContext.isLoggedin?(
+                                <MDBNavbarItem>
+                                    <NavLink to={`/notes/${noteUserName}`} className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
+                                        My Notes
+                                    </NavLink>
+                                </MDBNavbarItem>):(<></>)
+                            }
+
+                            {
+                                userContext.isLoggedin ? (
+                                    <MDBNavbarItem>
+                                        <NavLink to='/logout' onClick={handleLogoutClick} className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
+                                            Logout
+                                        </NavLink>
+                                    </MDBNavbarItem>
+                                ) : (
+                                    <MDBNavbarItem>
+                                        <NavLink to='/signin' className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
+                                            Login
+                                        </NavLink>
+                                    </MDBNavbarItem>
+                                )}
+                                
+                                {
+                                userContext.isLoggedin ? (
+                                    <></>
+                                ) : (
+                                    <MDBNavbarItem>
+                                        <NavLink to='/register' className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
+                                            SignUp
+                                        </NavLink>
+                                    </MDBNavbarItem>
+                                )}
+
+
+
                         </MDBNavbarNav>
                     </MDBCollapse>
                 </MDBContainer>

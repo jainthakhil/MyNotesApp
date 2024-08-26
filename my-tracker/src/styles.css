@@ -1,3 +1,5 @@
+
+
 .card-body-scroll{
     overflow-y: auto;
 }
@@ -31,4 +33,17 @@
 
   a{
     color: inherit;
+  }
+
+  .name-span{
+    font-weight: 900;
+    text-decoration: underline;
+  }
+  .navbar-light{
+    padding: 0;
+  }
+  .delete-btn{
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
   }

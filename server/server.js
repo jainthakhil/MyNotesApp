@@ -1,16 +1,24 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
-const dotenv = require('dotenv');
-
-dotenv.config({ path: './.env' });
-
 const app = express();
+require('dotenv').config();
+
+// const corsOptions = {
+//   origin: [
+//                              // Deployed frontend
+//     'http://localhost:3000' // Local frontend
+//   ],
+//   methods: ['GET', 'POST', 'DELETE'], // Allowed methods
+//   credentials: true // Allow credentials like cookies
+// };
+
+// app.use(cors(corsOptions));
+
 const PORT = process.env.PORT || 5000;
 
 require('./db/dbconn');
 
-app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 

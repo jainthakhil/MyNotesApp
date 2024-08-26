@@ -17,7 +17,7 @@ import {
 import Navbar from './Navbar';
 
 function Register() {
-
+    const backendUrl = process.env.REACT_APP_BACKEND_URL;
     const [userData, setUserData] = useState({
         name: "",
         email: "",
@@ -38,7 +38,7 @@ function Register() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const {name, email, password, confirmpassword} = userData;
-        const response = await fetch("/register",{
+        const response = await fetch('/register',{
             method:"POST",
             headers:{
                 "Content-Type":"application/json"
