@@ -4,18 +4,20 @@ import { MDBContainer, MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBIcon 
 import Navbar from './Navbar';
 import '../styles.css';
 import CreateNote from './CreateNote';
+import { useUserContext } from '../context/UserName';
 
 
 export default function NotesPage() {
+  const userContext = useUserContext();
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
   const [notes, setNotes] = useState([]);
   const navigate = useNavigate();
-  const name = useParams();
+  const name = userContext.userName;
 
   useEffect(() => {
     const fetchNotes = async () => {
       try {
-        const response = await fetch(`${backendUrl}/notes/:name`, {
+        const response = await fetch(`${backendUrl}/notes/${name}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json"
