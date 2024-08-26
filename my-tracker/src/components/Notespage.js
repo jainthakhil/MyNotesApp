@@ -15,7 +15,7 @@ export default function NotesPage() {
   useEffect(() => {
     const fetchNotes = async () => {
       try {
-        const response = await fetch(`${backendUrl}/notes/${name}`, {
+        const response = await fetch(`${backendUrl}/notes/:name`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json"
@@ -40,7 +40,7 @@ export default function NotesPage() {
 
   const deleteNote = async (id) => {
     try {
-      const response = await fetch(`/notes/${id}`, {
+      const response = await fetch(`${backendUrl}/notes/${id}`, {
         method: 'DELETE',
         credentials: 'include',
         headers: {
