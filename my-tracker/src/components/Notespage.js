@@ -21,7 +21,8 @@ export default function NotesPage() {
           method: "GET",
           headers: {
             "Content-Type": "application/json"
-          }
+          },
+          credentials: 'include' 
         });
 
         if (response.status === 200) {
