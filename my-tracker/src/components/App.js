@@ -6,10 +6,12 @@ import Error404 from './Error404';
 import NotesPage from './Notespage';
 import Logout from './Logout';
 import HomePage from './HomePage';
+import '../App.css'
+
 
 function App() {
   return (
-    <div className='parent-div' style={{backgroundColor:'#f7f7f7'}}>
+    <div className='parent-div h-auto w-full bg-[#DFF5FF]'>
     <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />

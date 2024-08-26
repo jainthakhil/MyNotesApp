@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { MDBContainer, MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBIcon } from 'mdb-react-ui-kit';
 import Navbar from './Navbar';
 import '../styles.css';
@@ -7,6 +7,7 @@ import CreateNote from './CreateNote';
 
 
 export default function NotesPage() {
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
   const [notes, setNotes] = useState([]);
   const navigate = useNavigate();
   const name = useParams();
@@ -14,7 +15,7 @@ export default function NotesPage() {
   useEffect(() => {
     const fetchNotes = async () => {
       try {
-        const response = await fetch(`/notes/${name}`, {  // Fetch notes from the server
+        const response = await fetch(`/notes/${name}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json"
@@ -26,70 +27,70 @@ export default function NotesPage() {
           setNotes(data);
         } else {
           console.error('Failed to fetch notes');
-          // Optionally redirect to an error page or show a message
           navigate('/signin');
         }
       } catch (err) {
         console.error('An error occurred while fetching notes:', err);
-        // Optionally redirect to an error page or show a message
         navigate('/signin');
       }
     };
 
     fetchNotes();
-  }, [navigate]);
+  }, [navigate, notes]);
 
-  //create new note 
-
-
+  const deleteNote = async (id) => {
+    try {
+      const response = await fetch(`/notes/${id}`, {
+        method: 'DELETE',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+  
+      const data = await response.json(); // This will fail if the response is not JSON
+      if (response.ok) {
+        setNotes(notes.filter(note => note._id !== id)); // Update state to remove deleted note
+        console.log("Note deleted successfully");
+      } else {
+        console.log("Error:", data.message || "Failed to delete note");
+      }
+    } catch (error) {
+      console.error('Error deleting note:', error);
+    }
+  };
+  
   return (
     <>
       <Navbar />
-      <MDBContainer fluid className="container-sm min-vh-100 d-flex flex-wrap flex-row align-items-center justify-content-center my-10 " style={{ paddingTop: '50px', paddingBottom:'50px' }}>
+      <MDBContainer fluid className="container-sm h-full w-full d-flex flex-wrap flex-row align-items-center justify-content-center  py-20 mx-auto bg-[#DFF5FF]">
 
-        <MDBCard className="m-3" style={{ width: '300px', height: '250px' }}>
+        <MDBCard className="m-3  w-[300px] h-[250px] " >
 
           <MDBCardBody>
             <CreateNote />
           </MDBCardBody>
 
         </MDBCard>
-
-
-
         {notes.length === 0 ? (
           <p>No notes available.</p>
         ) : (
           notes.slice().reverse().map(note => (
-            <MDBCard key={note._id} className="m-3" style={{ width: '300px', height: '250px' }}>
-              <MDBCardBody className="card-body-scroll">
+            <MDBCard key={note._id} className="m-3 bg-[#edf6ff] shadow-lg w-[300px] h-[250px]" >
+              <MDBCardBody className=" w-full h-full card-body-scroll flex flex-col">
 
-                <div className='d-flex justify-content-between align-items-center mb-3'>
-                  <MDBCardTitle className='mb-0' style={{width:"50%"}} >{note.title}</MDBCardTitle>
+                <div className='w-full d-flex justify-content-between align-items-center mb-3 text-[#365486]'>
+                  <MDBCardTitle className='mb-0 w-60  font-bold uppercase '  >{note.title}</MDBCardTitle>
                   <div>
-                    {/* Action links */}
-                    <Link to={`/edit/${note._id}`} className='mx-2'>
-                      <MDBIcon fas icon="pencil-alt" size='lg' />
-                    </Link>
-                    <Link to={`/delete/${note._id}`} className='mx-2'>
-                      <MDBIcon fas icon="trash-alt" size='lg' />
-                    </Link>
+                
+                    <button onClick={() => deleteNote(note._id)} className='delete-btn' >
+                    <MDBIcon fas icon="trash" size='lg'/>
+                    </button>
+                    
                   </div>
                 </div>
-
-
-                {/* <MDBCardTitle>{note.title}</MDBCardTitle> */}
-                <MDBCardText>{note.desc}</MDBCardText>
-                <MDBCardText><small>{note.date}</small></MDBCardText>
-
-                {/* <div class="d-flex justify-content-end">
-                  <Link to={`/edit/${note._id}`} className='mx-2 '><i class="fas fa-trash-can"></i></Link>
-                  <Link to={`/edit/${note._id}`} className='mx-2 '><i class="fas fa-pencil"></i></Link>
-
-                </div> */}
-
-
-
+                <MDBCardText className='text-[#0766AD] font-medium'>{note.desc}</MDBCardText>
+                <MDBCardText className='text-end mt-[45%]'><small>{note.date}</small></MDBCardText>
               </MDBCardBody>
             </MDBCard>
           ))

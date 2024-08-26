@@ -39,4 +39,22 @@ router.get('/notes/:name', authenticate, async (req, res) => {
   }
 });
 
+router.delete('/notes/:id', authenticate, async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const result = await Post.findByIdAndDelete(id);
+
+    if (result) {
+      res.status(200).json({ status: 200, message: 'Note deleted successfully' });
+    } else {
+      res.status(404).json({ status: 404, message: 'Note not found' });
+    }
+  } catch (error) {
+    console.error('Error deleting note:', error);
+    res.status(500).json({ status: 500, message: 'Server error' });
+  }
+});
+
+
 module.exports = router;
