@@ -10,17 +10,29 @@ import {
 
 } from 'mdb-react-ui-kit';
 
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import '../styles.css';
 import { useUserContext } from '../context/UserName';
 
 const Navbar = () => {
+    const navigate = useNavigate();
     const userContext = useUserContext();
-    const noteUserName = userContext.userName;
     const [openNavLeft, setOpenNavLeft] = useState(false);
-    const handleLogoutClick = ()=>{
+    const handleLogoutClick = async ()=>{
         userContext.setIsLoggedin(false);
+        await fetch('/logout', {
+            method: 'GET',
+            credentials: 'include'
+        });
+        
+        // Clear any client-side storage
+        localStorage.removeItem('token');
+        sessionStorage.removeItem('token');
+        document.cookie = "jwtoken=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+    
+        // Redirect to the login page
+        navigate('/signin');
     }
     
     return (
@@ -51,7 +63,7 @@ const Navbar = () => {
                             {
                                 userContext.isLoggedin?(
                                 <MDBNavbarItem>
-                                    <NavLink to={`/notes/${noteUserName}`} className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
+                                    <NavLink to={'/notes'} className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
                                         My Notes
                                     </NavLink>
                                 </MDBNavbarItem>):(<></>)

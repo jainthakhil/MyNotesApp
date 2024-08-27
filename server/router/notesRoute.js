@@ -4,7 +4,7 @@ const authenticate = require('../middleware/authenticate');
 const { Post } = require('../model/schema');
 
 // Create a new post
-router.post('/notes/:name', authenticate, async (req, res) => {
+router.post('/notes', authenticate, async (req, res) => {
   const { date, title, desc } = req.body;
 
   try {
@@ -20,7 +20,7 @@ router.post('/notes/:name', authenticate, async (req, res) => {
     user.notes.push(newPost._id);
     await user.save();
 
-    res.status(200).json({ message: "Note added successfully!", name: user.name  });
+    res.status(200).json({ message: "Note added successfully!", name: user.name });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Failed to add note" });
@@ -28,7 +28,7 @@ router.post('/notes/:name', authenticate, async (req, res) => {
 });
 
 // Get all notes for the logged-in user
-router.get('/notes/:name', authenticate, async (req, res) => {
+router.get('/notes', authenticate, async (req, res) => {
   try {
     const user = req.rootUser;
     const notes = await Post.find({ userId: user._id });

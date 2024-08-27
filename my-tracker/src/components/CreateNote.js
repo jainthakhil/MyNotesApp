@@ -5,7 +5,6 @@ import { MDBInput, MDBBtn } from 'mdb-react-ui-kit';
 
 const CreateNote = () => {
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
-  const { name } = useParams();
   const navigate = useNavigate();
   const [notesData, setNotesData] = useState({
     date: "",
@@ -21,11 +20,12 @@ const CreateNote = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${backendUrl}/notes/${name}`, {
+      const response = await fetch(`${backendUrl}/notes`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
+        credentials:'include',
         body: JSON.stringify(notesData)
       });
       const data = await response.json();
@@ -40,21 +40,8 @@ const CreateNote = () => {
             title: "",
             desc: ""
           });
-  
-        const notesResponse = await fetch(`/notes/${data.name}`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json"
-          }
-        });
 
-        const notesData = await notesResponse.json();
-
-        if (notesResponse.status === 200) {
-          navigate(`/notes/${data.name}`, { state: { notes: notesData } });
-        } else {
-          console.error("Failed to fetch notes");
-        }
+          navigate('/notes');
       }
     } catch (err) {
       console.log(err);

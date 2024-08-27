@@ -12,12 +12,12 @@ export default function NotesPage() {
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
   const [notes, setNotes] = useState([]);
   const navigate = useNavigate();
-  const name = userContext.userName;
+
 
   useEffect(() => {
     const fetchNotes = async () => {
       try {
-        const response = await fetch(`${backendUrl}/notes/${name}`, {
+        const response = await fetch(`${backendUrl}/notes`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json"
@@ -76,7 +76,7 @@ export default function NotesPage() {
 
         </MDBCard>
         {notes.length === 0 ? (
-          <p>No notes available.</p>
+          <p className='text-[#365486]'>No notes available.</p>
         ) : (
           notes.slice().reverse().map(note => (
             <MDBCard key={note._id} className="m-3 bg-[#edf6ff] shadow-lg w-[300px] h-[250px]" >

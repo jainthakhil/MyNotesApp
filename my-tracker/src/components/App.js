@@ -18,7 +18,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/signin" element={<Signin />} />
         <Route path='*' element={<Error404/>} />
-        <Route path='/notes/:name' element={<NotesPage/>}/>
+        <Route path='/notes' element={<NotesPage/>}/>
         <Route path='/logout' element={<Logout/>}/>
 
 
