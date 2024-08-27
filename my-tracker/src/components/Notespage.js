@@ -1,18 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { MDBContainer, MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBIcon } from 'mdb-react-ui-kit';
 import Navbar from './Navbar';
 import '../styles.css';
 import CreateNote from './CreateNote';
-import { useUserContext } from '../context/UserName';
-
 
 export default function NotesPage() {
-  const userContext = useUserContext();
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
   const [notes, setNotes] = useState([]);
   const navigate = useNavigate();
-
 
   useEffect(() => {
     const fetchNotes = async () => {
