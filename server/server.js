@@ -25,8 +25,8 @@ const authRoutes = require('./router/auth');
 const noteRoutes = require('./router/notesRoute');
 
 // Use routes
-app.use('/auth', authRoutes);
-app.use('/notes', noteRoutes);
+app.use(authRoutes);
+app.use(noteRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
