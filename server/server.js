@@ -25,8 +25,8 @@ const authRoutes = require('./router/auth');
 const noteRoutes = require('./router/notesRoute');
 
 // Use routes
-app.use('/api/auth', authRoutes); // Add a prefix for auth routes
-app.use('/api/notes', noteRoutes); // Add a prefix for notes routes
+app.use('/auth', authRoutes);
+app.use('/notes', noteRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
