@@ -4,7 +4,7 @@ const authenticate = require('../middleware/authenticate');
 const { Post } = require('../model/schema');
 
 // Create a new post
-router.post('/notes', authenticate, async (req, res) => {
+router.post('/notes', authenticate async (req, res) => {
   const { date, title, desc } = req.body;
 
   try {
@@ -28,7 +28,7 @@ router.post('/notes', authenticate, async (req, res) => {
 });
 
 // Get all notes for the logged-in user
-router.get('/notes', authenticate, async (req, res) => {
+router.get('/notes',authenticate async (req, res) => {
   try {
     const user = req.rootUser;
     const notes = await Post.find({ userId: user._id });
@@ -39,7 +39,7 @@ router.get('/notes', authenticate, async (req, res) => {
   }
 });
 
-router.delete('/notes/:id', authenticate, async (req, res) => {
+router.delete('/notes/:id',authenticate async (req, res) => {
   const { id } = req.params;
 
   try {
