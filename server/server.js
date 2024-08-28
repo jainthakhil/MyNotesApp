@@ -11,7 +11,7 @@ app.use(cors({
     'https://mynotes-app-frontend.vercel.app' // Deployed frontend
   ],
   methods: ['GET', 'POST', 'DELETE', 'OPTIONS', 'PUT', 'PATCH'], // Add any other methods you use
-  credentials: true // Allow cookies and credentials
+  credentials: true// Allow cookies and credentials
 }));
 
 app.use(express.json());
