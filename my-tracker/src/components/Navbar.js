@@ -19,6 +19,7 @@ const Navbar = () => {
     const navigate = useNavigate();
     const userContext = useUserContext();
     const [openNavLeft, setOpenNavLeft] = useState(false);
+
     const handleLogoutClick = async ()=>{
         userContext.setIsLoggedin(false);
         await fetch('/logout', {
@@ -27,8 +28,7 @@ const Navbar = () => {
         });
         
         // Clear any client-side storage
-        localStorage.removeItem('token');
-        sessionStorage.removeItem('token');
+        localStorage.removeItem('userName');
         document.cookie = "jwtoken=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
     
         // Redirect to the login page

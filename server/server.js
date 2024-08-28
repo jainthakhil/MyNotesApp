@@ -27,6 +27,8 @@ const noteRoutes = require('./router/notesRoute');
 // Use routes
 app.use(authRoutes);
 app.use(noteRoutes);
+app.get('/favicon.ico', (req, res) => res.status(204));  // No Content
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
