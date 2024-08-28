@@ -67,7 +67,7 @@ router.post("/signin", async (req, res)=>{
                 });
                 res.status(200).json({message: "user logged in successfully", name: userExist.name});
                 console.log(userExist.name, " has logged in");
-                // console.log(token);
+                console.log(token);
                 
                 
             }
