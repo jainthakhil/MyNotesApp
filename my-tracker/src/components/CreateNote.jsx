@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { MDBInput, MDBBtn } from 'mdb-react-ui-kit';
+import { MDBInput, MDBBtn, MDBTextArea } from 'mdb-react-ui-kit';
 import { useThemeContext } from '../context/Theme'
 
 
@@ -76,7 +76,7 @@ const CreateNote = () => {
           labelClass={`${themeContext.theme ? 'text-[#365486]' : 'text-white'} font-thin`}
           className={`${themeContext.theme? 'text-[#365486]' : 'text-white'} font-normal`}          
         />
-        <MDBInput 
+        {/* <MDBInput 
           wrapperClass='mb-3' 
           type='text' 
           id='form4Example3' 
@@ -86,8 +86,23 @@ const CreateNote = () => {
           value={notesData.desc} 
           onChange={handleChange} 
           labelClass={`${themeContext.theme ? 'text-[#365486]' : 'text-white'} font-thin`}
-          className={`${themeContext.theme? 'text-[#365486]' : 'text-white'} font-normal`}        />
-        <MDBBtn type='submit' className='mb-4 bg-[#67C6E3]  hover:bg-[#67C6E3]/90' block onClick={handleSubmit}>
+          className={`${themeContext.theme? 'text-[#365486]' : 'text-white'} font-normal`}
+        /> */}
+        <MDBTextArea
+          wrapperClass='mb-3'
+          id='form4Example3'
+          name="desc"
+          label='Note'
+          value={notesData.desc}
+          onChange={handleChange}
+          labelClass={`${themeContext.theme ? 'text-[#365486]' : 'text-white'} font-thin`}
+          className={`${themeContext.theme ? 'text-[#365486]' : 'text-white'} font-normal`}
+          rows={3} // Dynamic rows size
+          cols={50} // Dynamic columns size (if needed)
+        // You can remove 'cols' if you prefer a width that adjusts to its container
+        />
+
+        <MDBBtn type='submit' className='mb-0 bg-[#67C6E3]  hover:bg-[#67C6E3]/90' block onClick={handleSubmit}>
           Add
         </MDBBtn>
       </form>

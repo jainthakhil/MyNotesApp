@@ -1,11 +1,10 @@
 
 body{
-  /* background-color: #dff5ff; */
   background: fixed;
-  /* background: url('./images/notesbg7.jpg'); */
   background-size: cover;
   background-repeat: none;
   background-position: center;
+
 
 }
 
@@ -25,12 +24,12 @@ body{
   }
   
   .card-body-scroll::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: inherit;
     border-radius: 10px;
   }
   
   .card-body-scroll::-webkit-scrollbar-thumb {
-    background: #e6e6e6;
+    background: rgba(255, 255, 255, 0.2);
     border-radius: 10px;
   }
   
@@ -63,3 +62,6 @@ body{
   .form-label{
     color: white;
   }
+
+
+
