@@ -94,7 +94,7 @@ export default function NotesPage() {
                   </div>
                 </div>
                 <MDBCardText className={`${themeContext.theme? 'text-[#0766AD]' : 'text-white'}  font-light`}>{note.desc}</MDBCardText>
-                <MDBCardText className= {`${themeContext.theme? 'text-[#0766AD]' : 'text-white'} text-end mt-[45%]`} ><small>{note.date}</small></MDBCardText>
+                <MDBCardText className= {`${themeContext.theme? 'text-[#0766AD]' : 'text-white'} `} ><small>{note.date}</small></MDBCardText>
               </MDBCardBody>
             </MDBCard>
           ))

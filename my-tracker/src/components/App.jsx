@@ -8,7 +8,7 @@ import Logout from './Logout';
 import HomePage from './HomePage';
 import '../App.css'
 import '../styles.css'
-import bgLightImage from '../images/notesbg7.jpg' 
+import bgLightImage from '../images/lightbg2.jpg' 
 import bgDarkImage from '../images/nightbg3.jpg' 
 import { useThemeContext } from '../context/Theme';
 

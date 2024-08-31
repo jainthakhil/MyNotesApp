@@ -64,7 +64,7 @@ router.post("/signin", async (req, res)=>{
                     // expires: new Date(Date.now() + 25892000000),
                     httpOnly: true,
                     secure: process.env.NODE_ENV === 'production',
-                    sameSite: 'None' 
+                    sameSite: 'None'
                 });
                 res.status(200).json({message: "user logged in successfully", name: userExist.name});
                 console.log(userExist.name, " has logged in");

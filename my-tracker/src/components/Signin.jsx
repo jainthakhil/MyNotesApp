@@ -84,6 +84,7 @@ function Signin() {
 
                             <h2 className={`fw-bold mb-5 text-uppercase text-[2rem] ${themeContext.theme?'text-black':'text-[#DDDDDD]'}`}>Login</h2>
                             <form className='w-60' >
+
                                 <div className=" w-full d-flex flex-row align-items-center justify-between mb-4">
                                     <MDBIcon fas icon="envelope me-3 " size='lg' className={`${themeContext.theme?'text-black':'text-[#DDDDDD]'}`}/>
                                     <MDBInput label='Your Email' id='form2' type='email' 
@@ -91,7 +92,7 @@ function Signin() {
                                      value={loggedIndata.email}
                                      onChange={handleChange}
                                      labelClass={`${themeContext.theme ? 'text-[#365486]' : 'text-white'} font-thin`}
-                                     className={`${themeContext.theme? 'text-[#365486]' : 'text-[#DDDDDD]'} font-normal`}                                     />
+                                     className={`${themeContext.theme? 'text-[#365486]' : 'text-[#DDDDDD] focus:text-white'} font-normal bg-transparent`}                                     />
                                      
                                 </div>
 
@@ -102,7 +103,7 @@ function Signin() {
                                      value={loggedIndata.password}
                                      onChange={handleChange} 
                                      labelClass={`${themeContext.theme? 'text-[#365486]' : 'text-white'} font-thin`}
-                                     className={`${themeContext.theme? 'text-[#365486]' : 'text-[#DDDDDD]'} font-normal`}
+                                     className={`${themeContext.theme? 'text-[#365486]' : 'text-[#DDDDDD] focus:text-white'} font-normal`}
                                      />
                                 </div>
 

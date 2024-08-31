@@ -80,7 +80,7 @@ function Register() {
                                         value={userData.name}
                                         onChange={handleInput}
                                         labelClass={`${themeContext.theme ? 'text-[#365486]' : 'text-white'} font-thin`}
-                                        className={`${themeContext.theme? 'text-[#365486]' : 'text-[#DDDDDD]'} font-normal`}
+                                        className={`${themeContext.theme? 'text-[#365486] ' : 'text-[#DDDDDD] focus:text-white'} font-normal`}
                                     />
                                 </div>
 
@@ -90,7 +90,7 @@ function Register() {
                                         value={userData.email}
                                         onChange={handleInput}
                                         labelClass={`${themeContext.theme ? 'text-[#365486]' : 'text-white'} font-thin`}
-                                        className={`${themeContext.theme? 'text-[#365486]' : 'text-white'} font-normal`}
+                                        className={`${themeContext.theme? 'text-[#365486] ' : 'text-white focus:text-white'} font-normal`}
                                     />
                                 </div>
 
@@ -100,7 +100,7 @@ function Register() {
                                         value={userData.password}
                                         onChange={handleInput}
                                         labelClass={`${themeContext.theme ? 'text-[#365486]' : 'text-white'} font-thin`}
-                                        className={`${themeContext.theme? 'text-[#365486]' : 'text-white'} font-normal`}
+                                        className={`${themeContext.theme? 'text-[#365486]' : 'text-white focus:text-white'} font-normal `}
                                     />
                                 </div>
 
@@ -110,7 +110,7 @@ function Register() {
                                         value={userData.confirmpassword}
                                         onChange={handleInput}
                                         labelClass={`${themeContext.theme ? 'text-[#365486]' : 'text-white'} font-thin`}
-                                        className={`${themeContext.theme? 'text-[#365486]' : 'text-white'} font-normal`}
+                                        className={`${themeContext.theme? 'text-[#365486]' : 'text-white focus:text-white'} font-normal`}
                                     />
                                 </div>
                                 <MDBBtn type='submit' className='my-4 bg-[#67C6E3] hover:bg-[#67C6E3]/90' size='md' onClick={handleSubmit}>Register</MDBBtn>
