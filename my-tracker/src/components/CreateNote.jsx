@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { MDBInput, MDBBtn } from 'mdb-react-ui-kit';
+import { useThemeContext } from '../context/Theme'
 
 
 const CreateNote = () => {
+  const themeContext = useThemeContext();
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
   const navigate = useNavigate();
   const [notesData, setNotesData] = useState({
@@ -11,6 +13,7 @@ const CreateNote = () => {
     title: "",
     desc: ""
   });
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -49,7 +52,7 @@ const CreateNote = () => {
   }
   return (
     <>
-        <form>
+        <form >
         <MDBInput 
           id='form4Example1' 
           wrapperClass='mb-3' 
@@ -59,7 +62,8 @@ const CreateNote = () => {
           value={notesData.date} 
           onChange={handleChange} 
           placeholder=''
-          style={{ fontWeight: 'normal' }}
+          labelClass={`${themeContext.theme ? 'text-[#365486]' : 'text-white'} font-thin`}
+          className={`${themeContext.theme? 'text-[#365486]' : 'text-white'} font-normal`}
         />
         <MDBInput 
           type='text' 
@@ -69,7 +73,8 @@ const CreateNote = () => {
           label='Title' 
           value={notesData.title} 
           onChange={handleChange} 
-          style={{ fontWeight: 'normal' }}
+          labelClass={`${themeContext.theme ? 'text-[#365486]' : 'text-white'} font-thin`}
+          className={`${themeContext.theme? 'text-[#365486]' : 'text-white'} font-normal`}          
         />
         <MDBInput 
           wrapperClass='mb-3' 
@@ -80,9 +85,9 @@ const CreateNote = () => {
           label='Note' 
           value={notesData.desc} 
           onChange={handleChange} 
-          style={{ fontWeight: 'normal' }}
-        />
-        <MDBBtn type='submit' className='mb-4 bg-[#67C6E3]' block onClick={handleSubmit}>
+          labelClass={`${themeContext.theme ? 'text-[#365486]' : 'text-white'} font-thin`}
+          className={`${themeContext.theme? 'text-[#365486]' : 'text-white'} font-normal`}        />
+        <MDBBtn type='submit' className='mb-4 bg-[#67C6E3]  hover:bg-[#67C6E3]/90' block onClick={handleSubmit}>
           Add
         </MDBBtn>
       </form>

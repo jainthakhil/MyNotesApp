@@ -4,9 +4,6 @@ const User = require("../model/schema").User;
 const Authenticate = async (req, res, next) => {
     try{
         const token = req.cookies.jwtoken;
-        console.log("Cookies:", req.cookies);
-        console.log("token is :", token)
-        console.log("secret key is: ",process.env.SECRET_KEY );
         if(!token){
             console.log("unauthorised: user not logged in");
             return res.status(401).send("unauthorised: user not logged in");

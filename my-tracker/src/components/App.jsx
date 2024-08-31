@@ -7,11 +7,17 @@ import NotesPage from './Notespage';
 import Logout from './Logout';
 import HomePage from './HomePage';
 import '../App.css'
+import '../styles.css'
+import bgLightImage from '../images/notesbg7.jpg' 
+import bgDarkImage from '../images/nightbg3.jpg' 
+import { useThemeContext } from '../context/Theme';
+
 
 
 function App() {
+  const ThemeContext = useThemeContext();
   return (
-    <div className='parent-div h-auto w-full bg-[#DFF5FF]'>
+    <div className='parent-div min-h-[100vh] w-full bg-no-repeat bg-cover bg-center bg-fixed' style={{ backgroundImage: `url(${ThemeContext.theme ? bgLightImage : bgDarkImage})`}}>
     <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -20,9 +26,6 @@ function App() {
         <Route path='*' element={<Error404/>} />
         <Route path='/notes' element={<NotesPage/>}/>
         <Route path='/logout' element={<Logout/>}/>
-
-
-
       </Routes>
     </Router>
     </div>

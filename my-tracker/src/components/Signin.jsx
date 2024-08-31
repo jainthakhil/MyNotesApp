@@ -14,8 +14,13 @@ import {
     from 'mdb-react-ui-kit';
 import Navbar from './Navbar';
 import { useUserContext } from '../context/UserName';
+import lightUserImg from '../images/lightuser.png'
+import darkUserImg from '../images/darkuser.png'
+import ThemeController from './ThemeController'
+import { useThemeContext } from '../context/Theme';
 
 function Signin() {
+    const themeContext = useThemeContext();
     const backendUrl = process.env.REACT_APP_BACKEND_URL;
     const userContext = useUserContext();
     const [loggedIndata, setLoggedInData] = useState({
@@ -70,49 +75,46 @@ function Signin() {
     return (
         <>
         <Navbar/>
-        
-        <MDBContainer fluid className='container-sm d-flex align-items-center justify-content-center min-vh-100'>
-
-            <MDBCard className='text-black m-5 my-auto' style={{ borderRadius: '25px' }}>
+        <ThemeController/>
+        <MDBContainer fluid className=' w-full h-[calc(100vh-3.5rem-4rem)] flex flex-col align-items-center justify-content-center '>
+            <MDBCard className='lg:w-[60%] w-[80%] text-black m-5 my-auto rounded-3xl bg-white/20  backdrop-blur-xl'>
                 <MDBCardBody>
-                    <MDBRow className='flex-row-reverse'>
+                    <MDBRow className='flex-row-reverse justify-center'>
                         <MDBCol md='10' lg='6' className='order-2 order-lg-1 d-flex flex-column align-items-center'>
 
-                            <h2 className="fw-bold mb-5 text-uppercase">Login</h2>
-                            <form  >
-                                <div className="d-flex flex-row align-items-center mb-4">
-                                    <MDBIcon fas icon="envelope me-3" size='lg' />
+                            <h2 className={`fw-bold mb-5 text-uppercase text-[2rem] ${themeContext.theme?'text-black':'text-[#DDDDDD]'}`}>Login</h2>
+                            <form className='w-60' >
+                                <div className=" w-full d-flex flex-row align-items-center justify-between mb-4">
+                                    <MDBIcon fas icon="envelope me-3 " size='lg' className={`${themeContext.theme?'text-black':'text-[#DDDDDD]'}`}/>
                                     <MDBInput label='Your Email' id='form2' type='email' 
                                      name='email' 
                                      value={loggedIndata.email}
-                                     onChange={handleChange} 
-                                     style={{ fontWeight: 'normal' }}
-                                     />
+                                     onChange={handleChange}
+                                     labelClass={`${themeContext.theme ? 'text-[#365486]' : 'text-white'} font-thin`}
+                                     className={`${themeContext.theme? 'text-[#365486]' : 'text-[#DDDDDD]'} font-normal`}                                     />
                                      
                                 </div>
 
-                                <div className="d-flex flex-row align-items-center mb-4">
-                                    <MDBIcon fas icon="lock me-3" size='lg' />
+                                <div className="d-flex flex-row align-items-center justify-between mb-4">
+                                    <MDBIcon fas icon="lock me-3" size='lg' className={`${themeContext.theme?'text-black':'text-[#DDDDDD]'}`} />
                                     <MDBInput label='Password' id='form3' type='password'
                                      name='password' 
                                      value={loggedIndata.password}
                                      onChange={handleChange} 
-                                     style={{ fontWeight: 'normal' }}
+                                     labelClass={`${themeContext.theme? 'text-[#365486]' : 'text-white'} font-thin`}
+                                     className={`${themeContext.theme? 'text-[#365486]' : 'text-[#DDDDDD]'} font-normal`}
                                      />
                                 </div>
 
-                                <p>Don't have an account? <Link to="/register"><strong style={{color:"blue"}}>Sign Up </strong> </Link> </p>
-
-                                <MDBBtn type='submit' onClick={handleSubmit} className='mb-4' size='lg'>Login</MDBBtn>
+                                <p className={`${themeContext.theme? 'text-[#365486]' : 'text-[#DDDDDD]'} font-normal`}>Don't have an account? <span className='text-blue-400'><Link to="/register">Sign up</Link></span> </p>
+                                <MDBBtn type='submit' onClick={handleSubmit} className='my-4 bg-[#67C6E3] hover:bg-[#67C6E3]/90' size='md'>Login</MDBBtn>
 
                             </form>
 
-
-
                         </MDBCol>
 
-                        <MDBCol md='10' lg='6' className='order-1 order-lg-2 d-flex align-items-center'>
-                            <MDBCardImage src='https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp' fluid />
+                        <MDBCol md='10' lg='6' className='order-1 order-lg-2 flex items-center justify-center'>
+                            <MDBCardImage src={themeContext.theme? lightUserImg: darkUserImg} fluid className='h-[200px]' />
                         </MDBCol>
 
                     </MDBRow>

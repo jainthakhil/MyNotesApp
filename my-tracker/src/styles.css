@@ -1,5 +1,16 @@
 
+body{
+  /* background-color: #dff5ff; */
+  background: fixed;
+  /* background: url('./images/notesbg7.jpg'); */
+  background-size: cover;
+  background-repeat: none;
+  background-position: center;
 
+}
+.form-control~.form-label{
+  color: gray;
+}
 .card-body-scroll{
     overflow-y: auto;
 }
@@ -28,7 +39,7 @@
 
   .active {
     font-weight: bold;
-    color: #007bff; /* Change this to your desired active color */
+
   }
 
   a{
@@ -46,4 +57,8 @@
     border: none;
     background-color: transparent;
     cursor: pointer;
+  }
+
+  .form-label{
+    color: white;
   }

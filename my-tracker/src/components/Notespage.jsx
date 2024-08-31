@@ -4,11 +4,14 @@ import { MDBContainer, MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBIcon 
 import Navbar from './Navbar';
 import '../styles.css';
 import CreateNote from './CreateNote';
+import ThemeController from './ThemeController';
+import { useThemeContext } from '../context/Theme';
 
 export default function NotesPage() {
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
   const [notes, setNotes] = useState([]);
   const navigate = useNavigate();
+  const themeContext = useThemeContext();
 
   useEffect(() => {
     const fetchNotes = async () => {
@@ -47,9 +50,9 @@ export default function NotesPage() {
         },
       });
   
-      const data = await response.json(); // This will fail if the response is not JSON
+      const data = await response.json(); 
       if (response.ok) {
-        setNotes(notes.filter(note => note._id !== id)); // Update state to remove deleted note
+        setNotes(notes.filter(note => note._id !== id));
         console.log("Note deleted successfully");
       } else {
         console.log("Error:", data.message || "Failed to delete note");
@@ -62,9 +65,10 @@ export default function NotesPage() {
   return (
     <>
       <Navbar />
-      <MDBContainer fluid className="container-sm h-full w-full d-flex flex-wrap flex-row align-items-center justify-content-center  py-20 mx-auto bg-[#DFF5FF]">
+      <ThemeController/>
+      <MDBContainer fluid className=" h-full w-full d-flex flex-wrap flex-row align-items-center justify-content-center py-10 mx-auto">
 
-        <MDBCard className="m-3  w-[300px] h-[250px] " >
+        <MDBCard className="m-3  w-[300px] h-[250px] bg-white/20 backdrop-blur-lg rounded-3xl" >
 
           <MDBCardBody>
             <CreateNote />
@@ -75,11 +79,12 @@ export default function NotesPage() {
           <p className='text-[#365486]'>No notes available.</p>
         ) : (
           notes.slice().reverse().map(note => (
-            <MDBCard key={note._id} className="m-3 bg-[#edf6ff] shadow-lg w-[300px] h-[250px]" >
+
+            <MDBCard key={note._id} className="m-3 bg-[#edf6ff] shadow-lg w-[300px] h-[250px] bg-white/10 backdrop-blur-xl rounded-3xl" >
               <MDBCardBody className=" w-full h-full card-body-scroll flex flex-col">
 
-                <div className='w-full d-flex justify-content-between align-items-center mb-3 text-[#365486]'>
-                  <MDBCardTitle className='mb-0 w-60  font-bold uppercase '  >{note.title}</MDBCardTitle>
+                <div className={`w-full d-flex justify-content-between align-items-center mb-3 text-[#365486] ${themeContext.theme? 'text-[#365486]' : 'text-white'}`}>
+                  <MDBCardTitle className = 'mb-0 w-60  font-semi-bold uppercase'  >{note.title}</MDBCardTitle>
                   <div>
                 
                     <button onClick={() => deleteNote(note._id)} className='delete-btn' >
@@ -88,8 +93,8 @@ export default function NotesPage() {
                     
                   </div>
                 </div>
-                <MDBCardText className='text-[#0766AD] font-medium'>{note.desc}</MDBCardText>
-                <MDBCardText className='text-end mt-[45%]'><small>{note.date}</small></MDBCardText>
+                <MDBCardText className={`${themeContext.theme? 'text-[#0766AD]' : 'text-white'}  font-light`}>{note.desc}</MDBCardText>
+                <MDBCardText className= {`${themeContext.theme? 'text-[#0766AD]' : 'text-white'} text-end mt-[45%]`} ><small>{note.date}</small></MDBCardText>
               </MDBCardBody>
             </MDBCard>
           ))
