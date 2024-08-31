@@ -66,7 +66,7 @@ function Register() {
         <>
         <Navbar/>
         <ThemeController/>
-        <MDBContainer fluid className='w-full h-[calc(100vh-3.5rem-4rem)]  flex align-items-center justify-content-center '>
+        <MDBContainer fluid className='w-full h-[calc(100vh-3.5rem-4rem)]  flex align-items-center justify-content-center pt-40 '>
 
             <MDBCard className='lg:w-[60%] w-[80%] text-black rounded-3xl bg-white/20 backdrop-blur-xl' >
                 <MDBCardBody>

@@ -18,7 +18,7 @@ const HomePage = () => {
     <>
     <Navbar/>
     <ThemeController/>
-    <MDBContainer fluid className='h-[calc(100vh-3.5rem-4rem)] d-flex align-items-center justify-content-center  px-8'>
+    <MDBContainer fluid className='h-[calc(100vh-3.5rem-4rem)] d-flex align-items-center justify-content-center  px-8 pt-20'>
         <div className="h-full d-flex align-items-center justify-content-center text-center">
         <h1 className={`uppercase text-[#074173] text-[3rem] ${ThemeContext.theme ? 'text-black' : 'text-white'}`}>
         Welcome <span className=' font-semibold underline text-[#67C6E3]'>{userContext.userName}</span> to your personalised notes app.</h1>

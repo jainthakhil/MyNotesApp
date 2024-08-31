@@ -66,7 +66,7 @@ export default function NotesPage() {
     <>
       <Navbar />
       <ThemeController/>
-      <MDBContainer fluid className=" h-full w-full d-flex flex-wrap flex-row align-items-center justify-content-center py-10 mx-auto">
+      <MDBContainer fluid className=" h-full w-full d-flex flex-wrap flex-row align-items-center justify-content-center py-20 mx-auto ">
 
         <MDBCard className="m-3  w-[300px] h-auto bg-white/20 backdrop-blur-lg rounded-3xl" >
 
