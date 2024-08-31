@@ -12,8 +12,8 @@ const ThemeController = () => {
     }
     
   return (
-    <div className='w-full h-16 flex items-center justify-end'>
-    <div className="theme-box w-8 h-8 mr-12">
+    <div className='w-fit h-12 flex items-center justify-end fixed right-0 top-0 z-50'>
+    <div className="theme-box w-6 h-8 mr-12">
         <button onClick={handleClick} className='w-full h-full '>
         <img src={ThemeContext.theme? moonimage:sunImage} alt="" />
         </button>

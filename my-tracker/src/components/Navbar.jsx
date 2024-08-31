@@ -44,7 +44,7 @@ const Navbar = () => {
     return (
         <>
 
-            <MDBNavbar expand='lg'  className=' h-14 w-full  z-10 shadow-none '>
+            <MDBNavbar expand='lg'  className=' h-14 w-full fixed z-10 shadow-none backdrop-blur-sm '>
                 <MDBContainer fluid>
                     <MDBNavbarToggler
                         type='button'
@@ -63,7 +63,7 @@ const Navbar = () => {
                                 userContext.isLoggedin?(
                                 <MDBNavbarItem >
                                     <NavLink to='/' className={({ isActive }) =>
-                                        `nav-link ${isActive ? 'active' : ''} ${textColorClass}`}>
+                                        `nav-link ${isActive ? 'active ' : ''} ${textColorClass}`}>
                                         Home
                                     </NavLink>
                                 </MDBNavbarItem>):(<></>)

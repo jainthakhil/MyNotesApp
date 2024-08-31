@@ -1,11 +1,21 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
 body{
   background: fixed;
   background-size: cover;
   background-repeat: none;
   background-position: center;
 
+  font-family: "Nunito", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
 
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }
 
 .form-control~.form-label{
@@ -14,6 +24,7 @@ body{
 .card-body-scroll{
     overflow-y: auto;
 }
+
 .card-body-scroll::-webkit-scrollbar {
     width: 8px;
     opacity: 0; /* Hide scrollbar */
@@ -37,8 +48,10 @@ body{
     background: #888;
   }
 
+
   .active {
     font-weight: bold;
+    color: #67C6E3 !important;
 
   }
 
